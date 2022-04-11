@@ -9,6 +9,4 @@ export const DivInput =styled.div`
     padding: 1em;    
     width: 30em;
     background-color: #d9e3f0;
-    
-
 `
