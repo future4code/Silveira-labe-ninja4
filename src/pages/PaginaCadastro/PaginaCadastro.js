@@ -15,6 +15,17 @@ export default class PaginaCadastro extends React.Component {
 
 
 
+    OnchangeSelect = (e) => {
+        let value = Array.from(e.target.selectedOptions, option => option.value)
+        this.setState=({inputSelect: value})       
+
+    } 
+
+
+    
+
+
+
 
     render() {
 
