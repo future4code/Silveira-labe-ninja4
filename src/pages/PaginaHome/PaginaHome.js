@@ -1,8 +1,5 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styled from 'styled-components'
-
-
-
 
 const Home = styled.div`
 font-family: 'Bebas Neue', cursive;
@@ -44,7 +41,7 @@ height: 26px;
 margin-left: -150px;
 color: black;
 `
-const Paragrafo = styled.h1`
+const Paragrafo = styled.h2`
 display: flex;
 justify-content: center;
 height: 26px;
@@ -61,7 +58,9 @@ justify-content: space-around;
 cursor: pointer;
 
 `
-export class AppContainer extends Component {
+export default class PaginaHome extends React.Component {
+  
+  
   render() {
     return (
       <Home>
@@ -71,16 +70,16 @@ export class AppContainer extends Component {
      
       </Header>
      
-     <Labeninja1><h1>Labe</h1> </Labeninja1>
-     <Labeninja><h1>Ninja</h1></Labeninja>
+     <Labeninja1>Labe </Labeninja1>
+     <Labeninja>Ninja</Labeninja>
     
     
      
-     <Paragrafo> <h2>O talento certo, no momento certo!</h2></Paragrafo>
+     <Paragrafo> O talento certo, no momento certo!</Paragrafo>
      <Button2>
-      <Button>Quero Ser um Ninja  </Button>
+      <Button onClick={this.props.goToPaginaCadastro}>Quero Ser um Ninja  </Button>
       <br></br>
-      <Button>Quero Comprar um Ninja  </Button>
+      <Button >Quero Comprar um Ninja  </Button>
       </Button2>
         
         </Home>
