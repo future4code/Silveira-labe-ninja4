@@ -21,7 +21,7 @@ font-size: larger;
  cursor: pointer;
  display: flex;
  justify-content: center;
- border: 1px solid beige;
+ 
 `
 const Button2 = styled.div`
 display: flex;
@@ -67,7 +67,7 @@ export class AppContainer extends Component {
       <Home>
       <Header>
       
-        <h3 >Instagram</h3> <h3>Facebook</h3><h3>Twitter</h3>
+        <h3>Home</h3> <h3 >Instagram</h3> <h3>Facebook</h3>
      
       </Header>
      
