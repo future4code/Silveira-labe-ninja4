@@ -28,7 +28,7 @@ export default class App extends React.Component {
 			// case "servicos":
 			// 	return <PaginaServicos />
 			default:
-				return <PaginaCadastro />
+				return <PaginaHome goToPaginaCadastro={this.goToPaginaCadastro} onToPaginaCadastro={this.goToPaginaServicos} />
 		}
 
 	}
