@@ -2,6 +2,7 @@ import React from 'react'
 import PaginaCadastro from './pages/PaginaCadastro/PaginaCadastro'
 // import { createGlobalStyle } from 'styled-components';
 import PaginaHome from './pages/PaginaHome/PaginaHome';
+import PaginaServicos from './pages/PaginaServiços/PaginaServicos';
 
 // const GlobalStyle = createGlobalStyle`
 //   *{  
@@ -22,11 +23,11 @@ export default class App extends React.Component {
 	trocarTela = () => {
 		switch (this.state.paginaAtual) {
 			case "home":
-				return <PaginaHome goToPaginaCadastro={this.goToPaginaCadastro} onToPaginaCadastro={this.goToPaginaServicos} />
+				return <PaginaHome goToPaginaCadastro={this.goToPaginaCadastro} onToPaginaServicos={this.goToPaginaServicos} />
 			case "cadastro":
 				return <PaginaCadastro />
-			// case "servicos":
-			// 	return <PaginaServicos />
+			case "servicos":
+				return <PaginaServicos />
 			default:
 				return <PaginaCadastro />
 		}
