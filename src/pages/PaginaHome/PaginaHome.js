@@ -79,7 +79,7 @@ export default class PaginaHome extends React.Component {
      <Button2>
       <Button onClick={this.props.goToPaginaCadastro}>Quero Ser um Ninja  </Button>
       <br></br>
-      <Button >Quero Comprar um Ninja  </Button>
+      <Button onClick={this.props. onToPaginaServicos}>Quero Comprar um Ninja  </Button>
       </Button2>
         
         </Home>
