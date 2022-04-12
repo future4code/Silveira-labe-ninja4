@@ -11,6 +11,7 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
+
 export default class App extends React.Component {
 	state = {
 		paginaAtual: "cadastro",
