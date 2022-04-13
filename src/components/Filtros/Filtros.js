@@ -20,7 +20,7 @@ export default class Filtros extends Component {
           <input type="text" id='valor-minimo' />
         </Label>
 
-        <Label htmlFor="valor-maximo">Valor Mínimo
+        <Label htmlFor="valor-maximo">Valor Máximo
           <input type="text" id='valor-maximo' />
         </Label>
 
