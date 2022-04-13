@@ -2,7 +2,7 @@ import React from 'react'
 import PaginaCadastro from './pages/PaginaCadastro/PaginaCadastro'
 // import { createGlobalStyle } from 'styled-components';
 import PaginaHome from './pages/PaginaHome/PaginaHome';
-import PaginaServicos from './pages/PaginaServiços/PaginaServicos';
+// import PaginaServicos from './pages/PaginaServiços/PaginaServicos';
 
 import Grid from './components/Grid/Grid'
 import Filtros from './components/Filtros/Filtros'
@@ -23,19 +23,19 @@ export default class App extends React.Component {
 	}
 
 
-	trocarTela = () => {
-		switch (this.state.paginaAtual) {
-			case "home":
-				return <PaginaHome goToPaginaCadastro={this.goToPaginaCadastro} onToPaginaServicos={this.goToPaginaServicos} />
-			case "cadastro":
-				return <PaginaCadastro />
-			case "servicos":
-				return <PaginaServicos />
-			default:
-				return <PaginaCadastro />
-		}
+	// trocarTela = () => {
+	// 	switch (this.state.paginaAtual) {
+	// 		case "home":
+	// 			return <PaginaHome goToPaginaCadastro={this.goToPaginaCadastro} onToPaginaServicos={this.goToPaginaServicos} />
+	// 		case "cadastro":
+	// 			return <PaginaCadastro />
+	// 		case "servicos":
+	// 			return <PaginaServicos />
+	// 		default:
+	// 			return <PaginaCadastro />
+	// 	}
 
-	}
+	// }
 
 	// gotoVerdetalhes =(id) => {
 	// 	this.setState({ paginaAtual: "verDetalhes" })
@@ -60,7 +60,7 @@ export default class App extends React.Component {
 
 		return (
 			<div>
-				{this.trocarTela()}
+				{/* {this.trocarTela()} */}
 
         <Filtros />
         <Grid />

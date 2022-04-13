@@ -6,7 +6,7 @@ export const DivInput =styled.div`
     border: 1px solid black;
     align-items: center;
     padding: 1em;    
-    width: 30em;
+    /* width: 30em; */
     background-color: #d9e3f0;
 `
 export const FakeButton = styled.span`
