@@ -4,6 +4,9 @@ import PaginaCadastro from './pages/PaginaCadastro/PaginaCadastro'
 import PaginaHome from './pages/PaginaHome/PaginaHome';
 import PaginaServicos from './pages/PaginaServiços/PaginaServicos';
 
+import Grid from './components/Grid/Grid'
+import Filtros from './components/Filtros/Filtros'
+
 // const GlobalStyle = createGlobalStyle`
 //   *{  
 //     margin: 0;
@@ -58,6 +61,9 @@ export default class App extends React.Component {
 		return (
 			<div>
 				{this.trocarTela()}
+
+        <Filtros />
+        <Grid />
 			</div>
 		)
 	}
