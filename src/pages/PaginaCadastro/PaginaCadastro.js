@@ -2,8 +2,8 @@ import React from "react";
 import { DivInput } from "./styles"
 import axios from "axios";
 import { headers } from "../../constants/headers";
-import {BASE_URL} from "../../constants/url"
-
+import { BASE_URL } from "../../constants/url"
+import TextField from '@material-ui/core/TextField';
 
 export default class PaginaCadastro extends React.Component {
     state = {
@@ -14,23 +14,24 @@ export default class PaginaCadastro extends React.Component {
         dueDate: ""
     }
 
-    cadastrarServicos = async() => {
-        try{    
-        const body = {
-        title: this.state.title,
-        description: this.state.description,
-        price: Number(this.state.price),
-        paymentMethods: this.state.inputSelect,
-        dueDate: this.state.dueDate
-        }    
-        const response = await axios.post(`${BASE_URL}/jobs`,body,headers)
+    cadastrarServicos = async () => {
+        try {
+            const body = {
+                title: this.state.title,
+                description: this.state.description,
+                price: Number(this.state.price),
+                paymentMethods: this.state.inputSelect,
+                dueDate: this.state.dueDate
+            }
+            const response = await axios.post(`${BASE_URL}/jobs`, body, headers)
             console.log(response.data)
-         }   
-         catch (err){
-         console.log(err.response.data) 
+        }
+        catch (err) {
+            console.log(err.response.data)
 
-    }}
-    
+        }
+    }
+
 
 
 
@@ -73,11 +74,14 @@ export default class PaginaCadastro extends React.Component {
         return (
             <div>
                 <h2>Cadastre o seu serviço</h2>
+
+                <button onClick={this.props.goToPaginaHome} > HOME</button>
                 <DivInput>
-                    <input
-                        placeholder="Titulo*"
+           
+                    <TextField id="outlined-basic" label="Titulo" variant="outlined"
                         value={this.state.title}
                         onChange={this.onChangetitle}
+                    
                     />
                     <input
                         placeholder="Descrição*"
@@ -97,7 +101,7 @@ export default class PaginaCadastro extends React.Component {
                         value={this.state.inputSelect}
                         onChange={this.OnchangeSelect}
                         multiple
-                    >  
+                    >
                         <option>Cartão de crédito</option>
                         <option>Cartão de débito</option>
                         <option>Pix</option>
@@ -114,6 +118,7 @@ export default class PaginaCadastro extends React.Component {
                     />
                     <button onClick={this.cadastrarServicos} > Cadastrar</button>
 
+
                 </DivInput>
             </div>
         )
@@ -121,4 +126,4 @@ export default class PaginaCadastro extends React.Component {
 
 
     }
-    }
+}

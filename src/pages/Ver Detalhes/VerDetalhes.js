@@ -28,6 +28,21 @@ export default class VerDetalhes extends React.Component {
           console.log(err.response.data)
         }
       }
+
+      adicionarJobsCarrinho  = async() => {
+        try {
+            const body = {
+              "message": "Job updated",
+              "taken": true
+            }
+            const url = `${BASE_URL}/jobs/${this.props.jobID}`
+            const response = await Axios.post(url, body, headers)
+                console.log(response)
+        } catch (err) {
+            console.log(err.response.data)   
+        }
+      }
+
     // adicionarJobsCarrinho = (jobID) => { [PROVAVELMENTE VAI TER QUE FICAR NO PAI E PASSAR PRA CÁ POR PROPS]
     //     console.log('Funcionou');
     //     const jobsNoCarrinho = this.state.jobList.find(job => jobID === job.id)
@@ -49,25 +64,7 @@ export default class VerDetalhes extends React.Component {
 
     render() {
 console.log(this.state.job)
-        // const job = this.state.job.map((job) => {
-        //     return (
-        //       <div
-        //         key={job.id}
-        //       >
-        //         <div>
-        //           <h1>{job.tittle}</h1>
-        //           <p>{job.paymentMethods}</p>
-        //           <span><p>{job.dueDate}</p><p>R${job.price},00</p></span>
-        //           <p>{job.description}</p>
-        //         </div>
-        //         <div>
-                
-        //             <button>ADICIONAR AO CARRINHO</button>
-        //             <button>VOLTAR PARA LISTA</button>
-        //         </div>
-        //       </div>
-        //     )
-        //   })
+        
         return (
             <div>
                 <DivInput>
@@ -77,7 +74,7 @@ console.log(this.state.job)
                     <span><p>Prazo: {this.state.job.dueDate}</p><p>R${this.state.job.price},00</p></span>
                     <p>{this.state.job.description}</p>
                     <div>
-                        <FakeButton><p>ADICIONAR AO CARRINHO</p></FakeButton>
+                        <FakeButton onClick={this.adicionarJobsCarrinho}><p>ADICIONAR AO CARRINHO</p></FakeButton>
                         <FakeButton onClick={this.props.goToPaginaServicos}>VOLTAR</FakeButton>
                     </div>
                 </DivInput >

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container } from './Grid-style'
+import { Container } from './Servicos-style'
 import Axios from 'axios'
 import { BASE_URL } from '../../constants/url'
 import { headers } from '../../constants/headers'
@@ -34,7 +34,11 @@ getAllJobs = async () => {
       )
     })
     return (
-      <>
+      <>  
+          <header> 
+            <button onClick={this.props.goToPaginaHome}  >HOME</button>
+            <button onClick={this.props.goToPaginaCarrinho}>CARRINHO</button>
+          </header>
           <Filtros />
           <Container>
             {servicos}
