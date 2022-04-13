@@ -1,9 +1,12 @@
 import React from 'react'
 import PaginaCadastro from './pages/PaginaCadastro/PaginaCadastro'
+import {theme} from './theme'
+import { ThemeProvider } from '@material-ui/styles';
 // import { createGlobalStyle } from 'styled-components';
 import PaginaHome from './pages/PaginaHome/PaginaHome';
-import PaginaServicos from './components/Grid/PaginaServicos'
+import PaginaServicos from './components/Servicos/PaginaServicos'
 import VerDetalhes from './pages/Ver Detalhes/VerDetalhes';
+import PaginaCarrinho from './pages/PaginaCarrinho/PaginaCarrinho'
 
 // const GlobalStyle = createGlobalStyle`
 //   *{  
@@ -25,20 +28,22 @@ export default class App extends React.Component {
 	trocarTela = () => {
 		switch (this.state.paginaAtual) {
 			case "home":
-				return <PaginaHome goToPaginaCadastro={this.goToPaginaCadastro} onToPaginaServicos={this.goToPaginaServicos} />
+				return <PaginaHome goToPaginaCadastro={this.goToPaginaCadastro} goToPaginaServicos={this.goToPaginaServicos} />
 			case "cadastro":
-				return <PaginaCadastro />
+				return <PaginaCadastro goToPaginaHome={this.goToPaginaHome} />
 			case "servicos":
-				return <PaginaServicos gotoVerdetalhes={this.gotoVerdetalhes}/>
-				case "verDetalhes":
-					return <VerDetalhes jobID={this.state.servicoClickado} goToPaginaServicos={this.goToPaginaServicos}/>
+				return <PaginaServicos gotoVerdetalhes={this.gotoVerdetalhes} goToPaginaHome={this.goToPaginaHome} goToPaginaCarrinho={this.goToPaginaCarrinho} />
+			case "verDetalhes":
+				return <VerDetalhes jobID={this.state.servicoClickado} goToPaginaServicos={this.goToPaginaServicos} />
+			case "carrinho":
+				return <PaginaCarrinho goToPaginaHome={this.goToPaginaHome} />
 			default:
-				return <PaginaCadastro />
+				return <PaginaHome goToPaginaCadastro={this.goToPaginaCadastro} goToPaginaServicos={this.goToPaginaServicos} />
 		}
 
 	}
 
-	gotoVerdetalhes =(id) => {
+	gotoVerdetalhes = (id) => {
 		this.setState({ paginaAtual: "verDetalhes", servicoClickado: id })
 	}
 
@@ -51,21 +56,22 @@ export default class App extends React.Component {
 	goToPaginaServicos = () => {
 		this.setState({ paginaAtual: "servicos" })
 	}
+	goToPaginaCarrinho = () => {
+		this.setState({ paginaAtual: "carrinho" })
+	}
 
 
 
 
 
 	render() {
-// console.log(this.state.servicoClickado)
+
 
 		return (
-			<div>
+			<ThemeProvider theme={theme}>
 				{this.trocarTela()}
-{/* 
-        <Filtros />
-        <Grid /> */}
-			</div>
+
+			</ThemeProvider>
 		)
 	}
 
