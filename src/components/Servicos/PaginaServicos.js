@@ -11,7 +11,12 @@ import Filtros from '../Filtros/Filtros'
 export default class PaginaServicos extends React.Component {
   state = {
     jobs: [],
-    jobID: ""
+    jobID: "",
+
+    query: '',
+    minPrice: '',
+    maxPrice: '',
+    sortingParameter: 'title'
 }
 componentDidMount = () => {
     this.getAllJobs()
@@ -27,6 +32,31 @@ getAllJobs = async () => {
     // console.log(err.response)
   }
 }
+
+  onChangeMinPrice = (ev) => {
+    this.setState({
+      minPrice: ev.target.value
+    })
+}
+
+  onChangeMaxPrice = (ev) => {
+    this.setState({
+      maxPrice: ev.target.value
+    })
+  }
+
+  onChangeQuery = (ev) => {
+    this.setState({
+      query: ev.target.value
+    })
+  }
+
+  onChangesortingParameter = (ev) => {
+    this.setState({
+      sortingParameter: ev.target.value
+    })
+  }
+
   render() {
     const servicos = this.state.jobs.map((trabalho) => {
       return (
@@ -38,8 +68,26 @@ getAllJobs = async () => {
           <header> 
             <button onClick={this.props.goToPaginaHome}  >HOME</button>
             <button onClick={this.props.goToPaginaCarrinho}>CARRINHO</button>
+            {this.state.minPrice}
+            {this.state.maxPrice}
+            {this.state.query}
+            {this.state.sortingParameter}
+
+          <label htmlFor="busca">
+            <input type="text" id='busca' placeholder='Buscar' value={this.state.query} onChange={this.onChangeQuery} />
+          </label>
+
           </header>
-          <Filtros />
+          <Filtros 
+            minPrice={this.state.minPrice}
+            onChangeMinPrince={this.onChangeMinPrice}
+
+            maxPrice={this.state.maxPrice}
+            onChangeMaxPrince={this.onChangeMaxPrice}
+
+            sortingParameter={this.state.sortingParameter}
+            onChangesortingParameter={this.onChangesortingParameter}
+          />
           <Container>
             {servicos}
           </Container>
