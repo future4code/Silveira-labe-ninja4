@@ -58,7 +58,16 @@ getAllJobs = async () => {
   }
 
   render() {
-    const servicos = this.state.jobs.map((trabalho) => {
+    const servicos = this.state.jobs
+    .filter((job) => {
+      return job.title.toLowerCase().includes(this.state.query.toLocaleLowerCase())
+    })
+    .filter((job) => {
+      return this.state.minPrice === '' || job.price >= this.state.minPrice
+    }).filter((job) => {
+      return this.state.maxPrice === '' || job.price <= this.state.maxPrice
+    })
+    .map((trabalho) => {
       return (
         <CardJob title={trabalho.title} id1={trabalho.id} price={trabalho.price} dueDate={trabalho.dueDate} gotoVerdetalhes={this.props.gotoVerdetalhes}/>
       )
@@ -68,10 +77,6 @@ getAllJobs = async () => {
           <header> 
             <button onClick={this.props.goToPaginaHome}  >HOME</button>
             <button onClick={this.props.goToPaginaCarrinho}>CARRINHO</button>
-            {this.state.minPrice}
-            {this.state.maxPrice}
-            {this.state.query}
-            {this.state.sortingParameter}
 
           <label htmlFor="busca">
             <input type="text" id='busca' placeholder='Buscar' value={this.state.query} onChange={this.onChangeQuery} />
