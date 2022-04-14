@@ -3,7 +3,7 @@ import Chip from "@material-ui/core/Chip"
 
 
 export const PaymentChip = styled(Chip)`
-    margin: 0 2px;
+    margin: 2px;
     height: 28px !important;
     color: black;
 `
@@ -15,7 +15,7 @@ export const FormContainer = styled.div`
     justify-content: center;
     flex-direction: column;
     margin-top: 12px;
-    background-color: #FFFFFF;
+    background-color: white;
     color: white;
     `
 export const CardCadastroContainer = styled.div`

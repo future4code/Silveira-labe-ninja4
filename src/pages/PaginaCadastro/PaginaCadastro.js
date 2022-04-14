@@ -101,7 +101,8 @@ export default class PaginaCadastro extends React.Component {
                     />
                     <FormControl margin="normal" variant="outlined" size="small">
                         <InputLabel>Formas de Pagamento</InputLabel>
-                        <Select
+                        <Select 
+                            
                             value={this.state.paymentMethods}
                             onChange={this.onchangeSelect}
                             multiple
