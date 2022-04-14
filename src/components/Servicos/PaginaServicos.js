@@ -58,6 +58,7 @@ getAllJobs = async () => {
   }
 
   render() {
+
     const servicos = this.state.jobs
     .filter((job) => {
       return job.title.toLowerCase().includes(this.state.query.toLocaleLowerCase())
@@ -67,11 +68,27 @@ getAllJobs = async () => {
     }).filter((job) => {
       return this.state.maxPrice === '' || job.price <= this.state.maxPrice
     })
+    .sort((currentJob, nextJob) => {
+      switch(this.state.sortingParameter){
+        case 'title':
+          return currentJob.title.localeCompare(nextJob.title)
+        case 'prazo':
+          return new Date(currentJob.dueDate).getTime() - new Date(nextJob.dueDate).getTime()
+        case 'preco-crescente':
+          return currentJob.price - nextJob.price
+        case 'preco-decrescente':
+          return nextJob.price - currentJob.price
+        default:
+          return currentJob.title.localeCompare(nextJob.title)
+
+      }
+    })
     .map((trabalho) => {
       return (
         <CardJob title={trabalho.title} id1={trabalho.id} price={trabalho.price} dueDate={trabalho.dueDate} gotoVerdetalhes={this.props.gotoVerdetalhes}/>
       )
     })
+    
     return (
       <>  
           <header> 
