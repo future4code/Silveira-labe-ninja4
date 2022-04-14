@@ -1,7 +1,6 @@
 import React from "react";
-import Axios from "axios";
-import { headers } from "../../constants/headers";
-import { BASE_URL } from "../../constants/url"
+import Typography from '@material-ui/core/Typography'
+import Button from "@material-ui/core/Button"
 
 
 export default class PaginaCarrinho extends React.Component {
@@ -11,80 +10,61 @@ export default class PaginaCarrinho extends React.Component {
     }
 
 
-    componentDidMount = () => {
-        this.getAllJobs()
-    }
-    getAllJobs = async () => {
-        try {
-            const url = `${BASE_URL}/jobs`
-            const response = await Axios.get(url, headers)
-            this.setState({ carrinho: response.data.jobs })
-        } catch (err) {
-            alert('Ih alá! Deu erro... tente novamente.')
-            // console.log(err.response)
+
+
+
+    valorTotalCarrinho = () => {
+        let valorTotal = 0
+        for (let servicos of this.props.listaDeCarrinho) {
+            valorTotal = servicos.price
         }
+        return valorTotal
     }
-
-    removerTudoDoCarrinho = () => {
-        this.setState({carrinho:""})
-
-    }
-
-    // removerJobsCarrinho  = async() => {
-    //     try {
-    //         const body = {
-    //           "message": "Job updated",
-    //           "taken": false
-    //         }
-    //         const url = `${BASE_URL}/jobs/${servicos.id}`
-    //         const response = await Axios.post(url, body, headers)
-                
-    //     } catch (err) {
-    //         console.log(err.response.data)   
-    //     }
-    //   }
-
 
     render() {
-        
-
-        const servicosFiltrados = this.state.carrinho.filter((servicos) => {
-                           
-            return servicos.taken === true                  
-            
-            
-        }) 
-        const carrinhoFiltrado = () =>{ 
-            this.setState({carrinhoFiltrado:servicosFiltrados})
-            }
+        console.log(this.props)
 
 
-
-        console.log(this.state.carrinhoFiltrado)
-       
-        const servicosNoCarrinho = servicosFiltrados.map((servicos) => {
+        const listaDeCarrinho = this.props.listaDeCarrinho.map((servico) => {
             return (
-                <div key={servicos.id}>
-                    <strong>{servicos.title}</strong>
-                    R$ {servicos.price}
-                    <button onClick={this.removerJobsCarrinho}>Deletar</button>
+                <div 
+                    key={servico.id}>
+                        {servico.title}
+                    R$ {servico.price}
+                   
+                   <button onClick={() => this.props.removerDoCarrinho(servico.id)}>Deletar</button>
                 </div>
 
             )
-        }) 
 
+        })
+        let totalPrice = 0
+
+        this.props.listaDeCarrinho.forEach((item) => {
+            totalPrice += item.price
+        })
 
 
         return (
-                
-            <div>
-              {servicosNoCarrinho}  
 
-              <h3>Valor Total R$</h3>  <button onClick={this.removerTudoDoCarrinho} >Contratar Serviços</button>
+            <div>
+                {listaDeCarrinho}
+
+                <button onClick={this.removerTudoDoCarrinho} >Contratar Serviços</button>
+                <div>
+                    <Typography variant="h5">Total: ${totalPrice.toFixed(2)}</Typography>
+                    <Button onClick={this.props.removerTudoDoCarrinho} variant="contained" color="primary">Contratar Serviços</Button>
+
+                </div>
+
+
             </div>
-          
+
+
+
+
         )
 
-        }
-        
+    }
+
 }    

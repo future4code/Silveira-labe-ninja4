@@ -1,6 +1,6 @@
 import React from 'react'
 import PaginaCadastro from './pages/PaginaCadastro/PaginaCadastro'
-import {theme} from './theme'
+import { theme } from './theme'
 import { ThemeProvider } from '@material-ui/styles';
 import { createGlobalStyle } from 'styled-components';
 import PaginaHome from './pages/PaginaHome/PaginaHome';
@@ -21,7 +21,8 @@ const GlobalStyle = createGlobalStyle`
 export default class App extends React.Component {
 	state = {
 		paginaAtual: "home",
-		servicoClickado: ""
+		servicoClickado: "",
+		servicoNoCarrinho: [],
 	}
 
 
@@ -32,11 +33,11 @@ export default class App extends React.Component {
 			case "cadastro":
 				return <PaginaCadastro goToPaginaHome={this.goToPaginaHome} />
 			case "servicos":
-				return <PaginaServicos gotoVerdetalhes={this.gotoVerdetalhes} goToPaginaHome={this.goToPaginaHome} goToPaginaCarrinho={this.goToPaginaCarrinho} />
+				return <PaginaServicos adicionarAoCarrinho={this.adicionarAoCarrinho} gotoVerdetalhes={this.gotoVerdetalhes} goToPaginaHome={this.goToPaginaHome} goToPaginaCarrinho={this.goToPaginaCarrinho} />
 			case "verDetalhes":
 				return <VerDetalhes jobID={this.state.servicoClickado} goToPaginaServicos={this.goToPaginaServicos} />
 			case "carrinho":
-				return <PaginaCarrinho goToPaginaHome={this.goToPaginaHome} />
+				return <PaginaCarrinho removerTudoDoCarrinho={this.removerTudoDoCarrinho} removerDoCarrinho={this.removerDoCarrinho} goToPaginaHome={this.goToPaginaHome} listaDeCarrinho={this.state.servicoNoCarrinho} />
 			default:
 				return <PaginaHome goToPaginaCadastro={this.goToPaginaCadastro} goToPaginaServicos={this.goToPaginaServicos} />
 		}
@@ -60,21 +61,39 @@ export default class App extends React.Component {
 		this.setState({ paginaAtual: "carrinho" })
 	}
 
+	adicionarAoCarrinho = (servico) => {
+		alert("Serviço adicionado ao carrinho")
+		const novoCarrinho = [...this.state.servicoNoCarrinho, servico]
+		this.setState({ servicoNoCarrinho: novoCarrinho })
 
-
-
-
-	render() {
-
-
-		return (
-			
-			<ThemeProvider theme={theme}>
-				<GlobalStyle/>
-				{this.trocarTela()}
-
-			</ThemeProvider>
-		)
 	}
+
+
+	removerDoCarrinho = (id) => {
+		alert("Serviço removido do carrinho")
+		const novoCarrinho = this.state.servicoNoCarrinho.filter((item) => {
+			return item.id !== id
+		})
+		this.setState({ servicoNoCarrinho: novoCarrinho })
+	}
+
+
+	removerTudoDoCarrinho = () => {
+	this.setState({ servicoNoCarrinho: [] })
+
+}
+
+
+render() {
+
+
+	return (
+
+		<ThemeProvider theme={theme}>
+			<GlobalStyle />
+			{this.trocarTela()}
+		</ThemeProvider>
+	)
+}
 
 } 
