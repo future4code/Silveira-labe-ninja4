@@ -1,16 +1,30 @@
 import React from "react";
-import { DivInput } from "./styles"
+import { PaymentChip, FormContainer, CardCadastroContainer, ButtonContainer, Titulo} from "./styles"
 import axios from "axios";
 import { headers } from "../../constants/headers";
 import { BASE_URL } from "../../constants/url"
 import TextField from '@material-ui/core/TextField';
+import MenuItem from "@material-ui/core/MenuItem"
+import Select from "@material-ui/core/Select"
+import InputLabel from '@material-ui/core/InputLabel'
+import FormControl from "@material-ui/core/FormControl"
+import Button from "@material-ui/core/Button"
+
+
+const listaDeMetodosPagamentos = [
+    "Cartão de crédito",
+    "Cartão de Débito",
+    "Pix",
+    "PayPal",
+    "Boleto"
+]
 
 export default class PaginaCadastro extends React.Component {
     state = {
         title: "",
         description: "",
         price: "",
-        inputSelect: [],
+        paymentMethods: [],
         dueDate: ""
     }
 
@@ -20,15 +34,15 @@ export default class PaginaCadastro extends React.Component {
                 title: this.state.title,
                 description: this.state.description,
                 price: Number(this.state.price),
-                paymentMethods: this.state.inputSelect,
+                paymentMethods: this.state.paymentMethods,
                 dueDate: this.state.dueDate
             }
             const response = await axios.post(`${BASE_URL}/jobs`, body, headers)
-            console.log(response.data)
+            alert("Cadastro realizado com sucesso!")
+            this.setState({ title: "", description: "", price: "", paymentMethods: [], dueDate: "" })
         }
         catch (err) {
-            console.log(err.response.data)
-
+            alert(err.response.data.message)
         }
     }
 
@@ -40,7 +54,6 @@ export default class PaginaCadastro extends React.Component {
         this.setState({ title: e.target.value })
 
     }
-
     onChangedescription = (e) => {
         this.setState({ description: e.target.value })
 
@@ -49,78 +62,84 @@ export default class PaginaCadastro extends React.Component {
         this.setState({ price: e.target.value })
 
     }
-
-    onChangepaymentMethods = (e) => {
-        this.setState({ paymentMethods: e.target.value })
-
-    }
     onChangedueDate = (e) => {
         this.setState({ dueDate: e.target.value })
 
     }
-    OnchangeSelect = (e) => {
-        let value = Array.from(e.target.selectedOptions, option => option.value)
-        this.setState({ inputSelect: value })
-
+    onchangeSelect = (e) => {
+        this.setState({ paymentMethods: e.target.value })
     }
-
-
-
 
 
     render() {
 
 
-        return (
-            <div>
-                <h2>Cadastre o seu serviço</h2>
 
+        return (
+            <CardCadastroContainer>
                 <button onClick={this.props.goToPaginaHome} > HOME</button>
-                <DivInput>
-           
-                    <TextField id="outlined-basic" label="Titulo" variant="outlined"
+                
+                <Titulo><strong>Cadastre o seu serviço</strong></Titulo>
+
+
+                <FormContainer>
+                    <TextField id="outlined-basic" label="Titulo" variant="outlined" size="small" margin="normal"
                         value={this.state.title}
                         onChange={this.onChangetitle}
-                    
+
                     />
-                    <input
-                        placeholder="Descrição*"
+                    <TextField id="outlined-basic" label="Descrição" variant="outlined" size="small" margin="normal"
                         value={this.state.description}
                         onChange={this.onChangedescription}
 
                     />
-                    <input
-                        placeholder="R$"
+                    <TextField id="outlined-basic" label="R$" variant="outlined" size="small" margin="normal"
                         type="number"
                         value={this.state.price}
                         onChange={this.onChangeprice}
 
                     />
-                    <select
-                        placeholder="Formas de Pagamento"
-                        value={this.state.inputSelect}
-                        onChange={this.OnchangeSelect}
-                        multiple
-                    >
-                        <option>Cartão de crédito</option>
-                        <option>Cartão de débito</option>
-                        <option>Pix</option>
-                        <option>PayPal</option>
-                        <option>Boleto</option>
+                    <FormControl margin="normal" variant="outlined" size="small">
+                        <InputLabel>Formas de Pagamento</InputLabel>
+                        <Select
+                            value={this.state.paymentMethods}
+                            onChange={this.onchangeSelect}
+                            multiple
+                            renderValue={(selected) => (
+                                <div>
+                                    {selected.map((value) => {
+                                        return <PaymentChip color="primary" key={value} label={value} />
+                                    })}
+                                </div>
+                            )}
+                        >
+                            {listaDeMetodosPagamentos.map((name) => {
+                                return <MenuItem key={name} value={name}> {name}</MenuItem>
+                            })}
+                        </Select>
+                    </FormControl>
 
-                    </select>
-                    <input
-                        placeholder="Prazo"
+                    <TextField id="outlined-basic" label="" variant="outlined" size="small" margin="normal"
                         type="date"
                         value={this.state.dueDate}
                         onChange={this.onChangedueDate}
-
                     />
-                    <button onClick={this.cadastrarServicos} > Cadastrar</button>
+
+                    <ButtonContainer>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            fullWidth
+                            onClick={this.cadastrarServicos}> Cadastrar
+                        </Button>
+                    </ButtonContainer>
 
 
-                </DivInput>
-            </div>
+
+                </FormContainer>
+
+
+            </CardCadastroContainer >
         )
 
 
