@@ -7,21 +7,21 @@ export default class Filtros extends Component {
       <>
         <Container>
 
-        <Label htmlFor="filtro-ordenacao" >Ordenar por:
-          <select id='filtro-ordenacao'>
-            <option value="titule">Título</option>
+        <Label htmlFor="sort" >Ordenar por:
+            <select name='sort' value={this.props.sortingParameter} onChange={this.props.onChangesortingParameter} >
+            <option value="title">Título</option>
             <option value="preco-crescente">Preço Crescente</option>
             <option value="preco-decrescente">Preço Decrescente</option>
             <option value="prazo">Prazo</option>
           </select>
         </Label>
 
-        <Label htmlFor="valor-minimo">Valor Mínimo
-          <input type="text" id='valor-minimo' />
+          <Label htmlFor="valor-minimo">Valor Mínimo
+          <input type="number" name='valor-minimo' value={this.props.minPrice} onChange={this.props.onChangeMinPrince} />
         </Label>
 
-        <Label htmlFor="valor-maximo">Valor Máximo
-          <input type="text" id='valor-maximo' />
+          <Label htmlFor="valor-maximo">Valor Máximo
+          <input type="number" name='valor-maximo' value={this.props.maxPrice} onChange={this.props.onChangeMaxPrince} />
         </Label>
 
 
