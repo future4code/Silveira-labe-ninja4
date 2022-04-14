@@ -4,15 +4,15 @@ export const theme = createTheme({
   palette: {
     primary: {
       // light: será calculada com base em palette.primary.main,
-      main: '#ff4400',
+      main: '#000000',
       // dark: será calculada com base em palette.primary.main,
       // contrastText: será calculada para contrastar com palette.primary.main
     },
     secondary: {
-      light: '#0066ff',
+      light: '#838a86',
       main: '#0044ff',
       // dark: será calculada com base palette.secondary.main,
-      contrastText: '#ffcc00',
+      contrastText: '#FFFFFF',
     },
     // Usado por `getContrastText()` para maximizar o contraste entre
     // o plano de fundo e o texto.

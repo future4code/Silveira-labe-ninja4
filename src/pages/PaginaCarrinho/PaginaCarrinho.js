@@ -7,6 +7,7 @@ import { BASE_URL } from "../../constants/url"
 export default class PaginaCarrinho extends React.Component {
     state = {
         carrinho: [],
+        carrinhoFiltrado: []
     }
 
 
@@ -24,6 +25,10 @@ export default class PaginaCarrinho extends React.Component {
         }
     }
 
+    removerTudoDoCarrinho = () => {
+        this.setState({carrinho:""})
+
+    }
 
     // removerJobsCarrinho  = async() => {
     //     try {
@@ -41,13 +46,21 @@ export default class PaginaCarrinho extends React.Component {
 
 
     render() {
-        console.log(this.state.carrinho)
+        
 
         const servicosFiltrados = this.state.carrinho.filter((servicos) => {
-            return servicos.taken === true
+                           
+            return servicos.taken === true                  
+            
+            
+        }) 
+        const carrinhoFiltrado = () =>{ 
+            this.setState({carrinhoFiltrado:servicosFiltrados})
+            }
 
-        })
-        console.log(servicosFiltrados)
+
+
+        console.log(this.state.carrinhoFiltrado)
        
         const servicosNoCarrinho = servicosFiltrados.map((servicos) => {
             return (
@@ -55,7 +68,6 @@ export default class PaginaCarrinho extends React.Component {
                     <strong>{servicos.title}</strong>
                     R$ {servicos.price}
                     <button onClick={this.removerJobsCarrinho}>Deletar</button>
-
                 </div>
 
             )
@@ -68,7 +80,7 @@ export default class PaginaCarrinho extends React.Component {
             <div>
               {servicosNoCarrinho}  
 
-              <h3>Valor Total R$</h3>  <button>Contratar Serviços</button>
+              <h3>Valor Total R$</h3>  <button onClick={this.removerTudoDoCarrinho} >Contratar Serviços</button>
             </div>
           
         )

@@ -2,20 +2,20 @@ import React from 'react'
 import PaginaCadastro from './pages/PaginaCadastro/PaginaCadastro'
 import {theme} from './theme'
 import { ThemeProvider } from '@material-ui/styles';
-// import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 import PaginaHome from './pages/PaginaHome/PaginaHome';
 import PaginaServicos from './components/Servicos/PaginaServicos'
 import VerDetalhes from './pages/Ver Detalhes/VerDetalhes';
 import PaginaCarrinho from './pages/PaginaCarrinho/PaginaCarrinho'
 
-// const GlobalStyle = createGlobalStyle`
-//   *{  
-//     margin: 0;
-//     padding: 0;
-//     box-sizing: border-box;
-//     font-family: Verdana, Geneva, Tahoma, sans-serif;
-//   }
-// `
+const GlobalStyle = createGlobalStyle`
+  *{  
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+	
+   }
+`
 
 
 export default class App extends React.Component {
@@ -68,7 +68,9 @@ export default class App extends React.Component {
 
 
 		return (
+			
 			<ThemeProvider theme={theme}>
+				<GlobalStyle/>
 				{this.trocarTela()}
 
 			</ThemeProvider>
