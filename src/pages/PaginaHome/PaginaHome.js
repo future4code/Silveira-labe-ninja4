@@ -36,7 +36,7 @@ color: beige;
 const Labeninja1 = styled.h1`
 display: flex;
 justify-content: center;
-height: 26px;
+height: 49px;
 margin-left: -150px;
 color: black;
 `
@@ -45,7 +45,7 @@ display: flex;
 justify-content: center;
 height: 26px;
 margin-left: -50px;
-margin-top: 100px;
+margin-top: 150px;
 
 `
 const Header = styled.header`
@@ -55,6 +55,7 @@ display: flex;
 justify-content: space-between;
 justify-content: space-around;
 cursor: pointer;
+color: beige;
 
 `
 export default class PaginaHome extends React.Component {
@@ -65,16 +66,16 @@ export default class PaginaHome extends React.Component {
       <Home>
       <Header>
       
-        <h3>Home</h3> <h3 >Instagram</h3> <h3>Facebook</h3>
+        <h3>LBN</h3> <h3 >Instagram</h3> <h3>Facebook</h3>
      
       </Header>
      
-     <Labeninja1>Labe </Labeninja1>
-     <Labeninja>Ninja</Labeninja>
+     <Labeninja1><h1>Labe</h1> </Labeninja1>
+     <Labeninja><h1>Ninja</h1></Labeninja>
     
     
      
-     <Paragrafo> O talento certo, no momento certo!</Paragrafo>
+     <Paragrafo><h2>O talento certo, no momento certo!</h2></Paragrafo>
      <Button2>
       <Button onClick={this.props.goToPaginaCadastro}>Quero Ser um Ninja  </Button>
       <br></br>
