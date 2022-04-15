@@ -24,7 +24,6 @@ export default class VerDetalhes extends React.Component {
       this.setState({ job: response.data })
       console.log(response)
     } catch (err) {
-      //   alert('Ih alá! Deu erro... tente novamente.')
       console.log(err.response.data)
     }
   }
