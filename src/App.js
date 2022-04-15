@@ -36,7 +36,7 @@ export default class App extends React.Component {
 			case "servicos":
 				return <PaginaServicos adicionarAoCarrinho={this.adicionarAoCarrinho} gotoVerdetalhes={this.gotoVerdetalhes} goToPaginaHome={this.goToPaginaHome} goToPaginaCarrinho={this.goToPaginaCarrinho} />
 			case "verDetalhes":
-				return <VerDetalhes jobID={this.state.servicoClickado} goToPaginaServicos={this.goToPaginaServicos} />
+				return <VerDetalhes jobID={this.state.servicoClickado} goToPaginaServicos={this.goToPaginaServicos} adicionarAoCarrinho={this.adicionarAoCarrinho}/>
 			case "carrinho":
 				return <PaginaCarrinho goToPaginaHome={this.goToPaginaHome} removerTudoDoCarrinho={this.removerTudoDoCarrinho} removerDoCarrinho={this.removerDoCarrinho} listaDeCarrinho={this.state.servicoNoCarrinho} />
 			default:
@@ -80,6 +80,7 @@ export default class App extends React.Component {
 
 
 	removerTudoDoCarrinho = () => {
+		alert("Obrigado por contratrar nossos serviços")
 	this.setState({ servicoNoCarrinho: [] })
 
 }

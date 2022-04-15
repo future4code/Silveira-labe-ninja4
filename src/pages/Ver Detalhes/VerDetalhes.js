@@ -44,7 +44,7 @@ export default class VerDetalhes extends React.Component {
           <span><p>Prazo: {this.state.job.dueDate}</p><p>R${this.state.job.price},00</p></span>
           <p>{this.state.job.description}</p>
           <div>
-            <FakeButton onClick={() => this.props.adicionarAoCarrinho(this.props.servicos)}> <p> ADICIONAR AO CARRINHO</p> </FakeButton>
+            <FakeButton onClick={() => this.props.adicionarAoCarrinho(this.state.job)}> <p> ADICIONAR AO CARRINHO</p> </FakeButton>
             <FakeButton onClick={this.props.goToPaginaServicos}>VOLTAR</FakeButton>
           </div>
         </DivInput >
