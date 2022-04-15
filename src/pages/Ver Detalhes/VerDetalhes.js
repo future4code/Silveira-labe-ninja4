@@ -38,7 +38,6 @@ export default class VerDetalhes extends React.Component {
     })
 
     return (
-
       <DivInput>
 
         <h1>{this.state.job.title}</h1>
@@ -50,7 +49,7 @@ export default class VerDetalhes extends React.Component {
         <p>{this.state.job.description}</p>
         <ButtonContainer>
           <Button
-            onClick={() => this.props.adicionarAoCarrinho(this.props.servicos)}
+            onClick={() => this.props.adicionarAoCarrinho(this.state.job)}
             variant="contained"
             color="primary"
             startIcon={<AddShoppingCartOutlinedIcon />}

@@ -43,9 +43,9 @@ export default class PaginaCarrinho extends React.Component {
             )
 
         })
-        let totalPrice = 0
+        let valorTotal = 0
         this.props.listaDeCarrinho.forEach((item) => {
-            totalPrice += item.price
+            valorTotal += item.price
         })
 
 
@@ -60,7 +60,7 @@ export default class PaginaCarrinho extends React.Component {
                 {listaDeCarrinho}
                 </ContainerCarrinho>  
                 <ButtonContainer>
-                    <Typography variant="h5">Total: R${totalPrice.toFixed(2)}</Typography>
+                    <Typography variant="h5">Total: R${valorTotal.toFixed(2)}</Typography>
                     <Button onClick={this.props.removerTudoDoCarrinho}
                      variant="contained" color="primary">Contratar Serviços</Button>
 
