@@ -1,13 +1,16 @@
 import styled from 'styled-components';
 export const DivInput =styled.div`
+   padding: 20px;
     display: flex;
-    justify-content: center;
-    flex-direction: column;
-    border: 1px solid black;
+    flex-direction: row;    
+    justify-content: space-around;
     align-items: center;
-    padding: 1em;    
-    /* width: 30em; */
-    background-color: #d9e3f0;
+    font-family: 'Bebas Neue', cursive;
+    color: black;
+    text-align: center;
+    background-color: red;
+    border-radius: 5px;
+    flex-wrap: wrap;
 `
 export const FakeButton = styled.span`
 display: flex;
