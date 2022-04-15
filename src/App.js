@@ -14,6 +14,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
 	
+	
    }
 `
 
@@ -37,7 +38,7 @@ export default class App extends React.Component {
 			case "verDetalhes":
 				return <VerDetalhes jobID={this.state.servicoClickado} goToPaginaServicos={this.goToPaginaServicos} />
 			case "carrinho":
-				return <PaginaCarrinho removerTudoDoCarrinho={this.removerTudoDoCarrinho} removerDoCarrinho={this.removerDoCarrinho} goToPaginaHome={this.goToPaginaHome} listaDeCarrinho={this.state.servicoNoCarrinho} />
+				return <PaginaCarrinho goToPaginaHome={this.goToPaginaHome} removerTudoDoCarrinho={this.removerTudoDoCarrinho} removerDoCarrinho={this.removerDoCarrinho} listaDeCarrinho={this.state.servicoNoCarrinho} />
 			default:
 				return <PaginaHome goToPaginaCadastro={this.goToPaginaCadastro} goToPaginaServicos={this.goToPaginaServicos} />
 		}

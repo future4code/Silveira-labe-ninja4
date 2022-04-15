@@ -1,6 +1,13 @@
 import React from "react";
+import Header from "../../components/Header";
 import Typography from '@material-ui/core/Typography'
+import Container from '@material-ui/core/Container';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import Button from "@material-ui/core/Button"
+import { CardCarrinho, ButtonContainer, ButtonHome, HeaderHome, ContainerCarrinho, ButtonDelete } from './styles'
+import Grid from '@material-ui/core/Grid';
+
+
 
 
 export default class PaginaCarrinho extends React.Component {
@@ -8,9 +15,6 @@ export default class PaginaCarrinho extends React.Component {
         carrinho: [],
         carrinhoFiltrado: []
     }
-
-
-
 
 
     valorTotalCarrinho = () => {
@@ -22,24 +26,24 @@ export default class PaginaCarrinho extends React.Component {
     }
 
     render() {
-        console.log(this.props)
+       
 
 
         const listaDeCarrinho = this.props.listaDeCarrinho.map((servico) => {
             return (
-                <div 
-                    key={servico.id}>
-                        {servico.title}
-                    R$ {servico.price}
-                   
-                   <button onClick={() => this.props.removerDoCarrinho(servico.id)}>Deletar</button>
-                </div>
+                <CardCarrinho container  direction="column" justifyContent="space-around"
+                    alignItems="center" backgraound-color="#838a86"  key={servico.id}
+                >   
+                    <strong>{servico.title}</strong>
+                    <strong>R$ {servico.price}</strong>
 
+                    <ButtonDelete onClick={() => this.props.removerDoCarrinho(servico.id)}>X</ButtonDelete>
+
+                </CardCarrinho>
             )
 
         })
         let totalPrice = 0
-
         this.props.listaDeCarrinho.forEach((item) => {
             totalPrice += item.price
         })
@@ -48,23 +52,22 @@ export default class PaginaCarrinho extends React.Component {
         return (
 
             <div>
+            <HeaderHome>
+            <ButtonHome onClick={this.props.goToPaginaHome} > <Header/></ButtonHome>
+            </HeaderHome>    
+                 <ContainerCarrinho>
+                
                 {listaDeCarrinho}
+                </ContainerCarrinho>  
+                <ButtonContainer>
+                    <Typography variant="h5">Total: R${totalPrice.toFixed(2)}</Typography>
+                    <Button onClick={this.props.removerTudoDoCarrinho}
+                     variant="contained" color="primary">Contratar Serviços</Button>
 
-                <button onClick={this.removerTudoDoCarrinho} >Contratar Serviços</button>
-                <div>
-                    <Typography variant="h5">Total: ${totalPrice.toFixed(2)}</Typography>
-                    <Button onClick={this.props.removerTudoDoCarrinho} variant="contained" color="primary">Contratar Serviços</Button>
-
-                </div>
-
+                </ButtonContainer>
 
             </div>
 
-
-
-
-        )
-
+        );
     }
-
 }    

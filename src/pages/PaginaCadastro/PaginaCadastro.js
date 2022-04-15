@@ -1,5 +1,5 @@
 import React from "react";
-import { PaymentChip, FormContainer, CardCadastroContainer, ButtonContainer, Titulo} from "./styles"
+import { PaymentChip, FormContainer, CardCadastroContainer, ButtonContainer, Titulo, ButtonHome,HeaderHome } from "./styles"
 import axios from "axios";
 import { headers } from "../../constants/headers";
 import { BASE_URL } from "../../constants/url"
@@ -9,6 +9,7 @@ import Select from "@material-ui/core/Select"
 import InputLabel from '@material-ui/core/InputLabel'
 import FormControl from "@material-ui/core/FormControl"
 import Button from "@material-ui/core/Button"
+import Header from "../../components/Header";
 
 
 const listaDeMetodosPagamentos = [
@@ -76,71 +77,74 @@ export default class PaginaCadastro extends React.Component {
 
 
         return (
-            <CardCadastroContainer>
-                <button onClick={this.props.goToPaginaHome} > HOME</button>
-                
-                <Titulo><strong>Cadastre o seu serviço</strong></Titulo>
+            <div>
+                <HeaderHome> <ButtonHome onClick={this.props.goToPaginaHome} > <Header /></ButtonHome> </HeaderHome>
+                <CardCadastroContainer>
 
 
-                <FormContainer>
-                    <TextField id="outlined-basic" label="Titulo" variant="outlined" size="small" margin="normal"
-                        value={this.state.title}
-                        onChange={this.onChangetitle}
-
-                    />
-                    <TextField id="outlined-basic" label="Descrição" variant="outlined" size="small" margin="normal"
-                        value={this.state.description}
-                        onChange={this.onChangedescription}
-
-                    />
-                    <TextField id="outlined-basic" label="R$" variant="outlined" size="small" margin="normal"
-                        type="number"
-                        value={this.state.price}
-                        onChange={this.onChangeprice}
-
-                    />
-                    <FormControl margin="normal" variant="outlined" size="small">
-                        <InputLabel>Formas de Pagamento</InputLabel>
-                        <Select 
-                            
-                            value={this.state.paymentMethods}
-                            onChange={this.onchangeSelect}
-                            multiple
-                            renderValue={(selected) => (
-                                <div>
-                                    {selected.map((value) => {
-                                        return <PaymentChip color="primary" key={value} label={value} />
-                                    })}
-                                </div>
-                            )}
-                        >
-                            {listaDeMetodosPagamentos.map((name) => {
-                                return <MenuItem key={name} value={name}> {name}</MenuItem>
-                            })}
-                        </Select>
-                    </FormControl>
-
-                    <TextField id="outlined-basic" label="" variant="outlined" size="small" margin="normal"
-                        type="date"
-                        value={this.state.dueDate}
-                        onChange={this.onChangedueDate}
-                    />
-
-                    <ButtonContainer>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            fullWidth
-                            onClick={this.cadastrarServicos}> Cadastrar
-                        </Button>
-                    </ButtonContainer>
+                    <Titulo><strong>Cadastre o seu serviço</strong></Titulo>
 
 
+                    <FormContainer>
+                        <TextField id="outlined-basic" label="Titulo" variant="filled" size="small" margin="normal"
+                            value={this.state.title}
+                            onChange={this.onChangetitle}
 
-                </FormContainer>
+                        />
+                        <TextField id="outlined-basic" label="Descrição" variant="filled" size="small" margin="normal"
+                            value={this.state.description}
+                            onChange={this.onChangedescription}
+
+                        />
+                        <TextField id="outlined-basic" label="R$" variant="filled" size="small" margin="normal"
+                            type="number"
+                            value={this.state.price}
+                            onChange={this.onChangeprice}
+
+                        />
+                        <FormControl margin="normal" variant="filled" size="small">
+                            <InputLabel>Formas de Pagamento</InputLabel>
+                            <Select
+
+                                value={this.state.paymentMethods}
+                                onChange={this.onchangeSelect}
+                                multiple
+                                renderValue={(selected) => (
+                                    <div>
+                                        {selected.map((value) => {
+                                            return <PaymentChip color="primary" key={value} label={value} />
+                                        })}
+                                    </div>
+                                )}
+                            >
+                                {listaDeMetodosPagamentos.map((name) => {
+                                    return <MenuItem key={name} value={name}> {name}</MenuItem>
+                                })}
+                            </Select>
+                        </FormControl>
+
+                        <TextField id="outlined-basic" label="" variant="filled" size="small" margin="normal"
+                            type="date"
+                            value={this.state.dueDate}
+                            onChange={this.onChangedueDate}
+                        />
+
+                        <ButtonContainer>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                fullWidth
+                                onClick={this.cadastrarServicos}> Cadastrar
+                            </Button>
+                        </ButtonContainer>
 
 
-            </CardCadastroContainer >
+
+                    </FormContainer>
+
+
+                </CardCadastroContainer >
+            </div>
         )
 
 

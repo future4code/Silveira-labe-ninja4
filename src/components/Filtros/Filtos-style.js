@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Select from "@material-ui/core/Select"
 
 export const Container = styled.div`
   border: 1px solid black;
@@ -12,3 +13,15 @@ export const Label = styled.div`
   padding: 30px;
 
 `
+export const FiltersContainer = styled.div`
+    width: (100vw - 64px);
+    margin: 32px 32px 0 32px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+`
+
+export const CustomSelect = styled(Select)`
+    width: 200px;
+    margin: 0 32px 8px 0;
+ `   
