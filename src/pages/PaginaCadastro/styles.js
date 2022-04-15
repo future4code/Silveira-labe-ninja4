@@ -40,3 +40,12 @@ export const Titulo = styled.div`
     justify-content: center;
 
 `
+export const ButtonHome = styled.button`
+    cursor: pointer;
+    background-color: red;
+    border: 1px white solid;
+
+`
+export const HeaderHome = styled.header`
+     background-color: red;   
+`
