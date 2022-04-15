@@ -18,12 +18,11 @@ font-size: larger;
  cursor: pointer;
  display: flex;
  justify-content: center;
- 
+ margin: 10px;
 `
 const Button2 = styled.div`
 display: flex;
 justify-content: center;
-flex-direction: column;
 align-items: center;
 margin-top: 250px;
 padding: 10px;

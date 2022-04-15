@@ -1,11 +1,11 @@
 import React from 'react';
 import { DivInput } from './styles';
 import Axios from 'axios';
-import { IconeAddCart } from '../../media/iconeAddCarrinho.png';
-import { IconeVoltar } from '../../media/iconeVoltar.png';
-import { FakeButton } from './styles';
+import { ButtonContainer, PaymentChip, ChipsContainer } from './styles';
 import { BASE_URL } from '../../constants/url';
 import { headers } from '../../constants/headers';
+import Button from "@material-ui/core/Button"
+import AddShoppingCartOutlinedIcon from '@material-ui/icons/AddShoppingCartOutlined';
 
 export default class VerDetalhes extends React.Component {
   state = {
@@ -33,22 +33,34 @@ export default class VerDetalhes extends React.Component {
 
 
   render() {
-    console.log(this.state.job)
+    const paymentMethodsComponents = this.state.job.paymentMethods && this.state.job.paymentMethods.map((value) => {
+      return <PaymentChip color="primary" key={value} label={value} />
+    })
 
     return (
-      <div>
-        <DivInput>
+      <DivInput>
 
-          <h1>{this.state.job.title}</h1>
-          <p>Método de Pagamento: {this.state.job.paymentMethods}</p>
-          <span><p>Prazo: {this.state.job.dueDate}</p><p>R${this.state.job.price},00</p></span>
-          <p>{this.state.job.description}</p>
-          <div>
-            <FakeButton onClick={() => this.props.adicionarAoCarrinho(this.state.job)}> <p> ADICIONAR AO CARRINHO</p> </FakeButton>
-            <FakeButton onClick={this.props.goToPaginaServicos}>VOLTAR</FakeButton>
-          </div>
-        </DivInput >
-      </div >
+        <h1>{this.state.job.title}</h1>
+        <ChipsContainer>
+          Aceita: 
+          {paymentMethodsComponents}
+        </ChipsContainer>
+        <span><p>Prazo: {this.state.job.dueDate}</p><p>R${this.state.job.price},00</p></span>
+        <p>{this.state.job.description}</p>
+        <ButtonContainer>
+          <Button
+            onClick={() => this.props.adicionarAoCarrinho(this.state.job)}
+            variant="contained"
+            color="primary"
+            startIcon={<AddShoppingCartOutlinedIcon />}
+          > ADICIONAR AO CARRINHO </Button>
+          <Button onClick={this.props.goToPaginaServicos}
+            variant="outlined"
+            color='primary'
+          >VOLTAR</Button>
+        </ButtonContainer>
+      </DivInput >
+
     )
   }
 }
