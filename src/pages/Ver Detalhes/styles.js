@@ -1,32 +1,26 @@
 import styled from 'styled-components';
+import Chip from "@material-ui/core/Chip"
 export const DivInput =styled.div`
     display: flex;
     justify-content: center;
     flex-direction: column;
-    border: 1px solid black;
     align-items: center;
-    padding: 1em;    
-    width: 30em;
-    background-color: #d9e3f0;
+    background-color: red;
+    height: 100vh;
+    font-family: 'Bebas Neue', cursive;
+    text-align: center;
 `
-export const FakeButton = styled.span`
+export const ButtonContainer = styled.div`
 display: flex;
-justify-content: space-around;
-max-width: 200px;
-max-height: 80px;
-font-size: 1.5rem;
-img{
-    height: 80px;
-    width: 80x;
-    /* object-fit: fill; */
-}
-:hover{
-    cursor:pointer;
-    background-color: darkgray;
-    color: white;
-}
-:active{
-    background-color: black;
-    color:white
-}
+margin: 2rem;
+`
+export const PaymentChip = styled(Chip)`
+    margin: 0 4px;
+    height: 28px !important;
+`
+export const ChipsContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 24px;
 `

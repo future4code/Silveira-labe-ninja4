@@ -1,10 +1,14 @@
 import React from 'react'
-import { Container } from './Servicos-style'
+import { Container, HeaderDiv, FakeButton, SearchContainer, Main} from './Servicos-style'
 import Axios from 'axios'
 import { BASE_URL } from '../../constants/url'
 import { headers } from '../../constants/headers'
 import CardJob from '../CardJobs/CardJob'
 import Filtros from '../Filtros/Filtros'
+import SvgIcon from '@material-ui/core/SvgIcon';
+import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import InputBase from '@material-ui/core/InputBase'
+import SearchIcon from '@material-ui/icons/Search';
 
 
 
@@ -58,7 +62,7 @@ export default class PaginaServicos extends React.Component {
   }
 
   render() {
-    
+
     const servicos = this.state.jobs
       .filter((job) => {
         return job.title.toLowerCase().includes(this.state.query.toLocaleLowerCase())
@@ -91,20 +95,40 @@ export default class PaginaServicos extends React.Component {
             gotoVerdetalhes={this.props.gotoVerdetalhes} adicionarAoCarrinho={this.props.adicionarAoCarrinho} />
         )
       })
-     
-     
+
+    function HomeIcon(props) {
+      return (
+        <SvgIcon {...props}>
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+        </SvgIcon>
+      );
+    }
     return (
 
-      
-      <>
+
+      <Main>
         <header>
-          <button onClick={this.props.goToPaginaHome}  >HOME</button>
-          <button onClick={this.props.goToPaginaCarrinho}>CARRINHO</button>
+          <HeaderDiv>
+            <FakeButton>
+              <HomeIcon onClick={this.props.goToPaginaHome} />
+            </FakeButton>
 
-          <label htmlFor="busca">
-            <input type="text" id='busca' placeholder='Buscar' value={this.state.query} onChange={this.onChangeQuery} />
-          </label>
-
+            {/* <label htmlFor="busca">
+              <input type="text" id='busca' placeholder='Buscar' value={this.state.query} onChange={this.onChangeQuery} />
+            </label> */}
+            <SearchContainer>
+              <SearchIcon font-size='large' />
+              <InputBase
+                inputProps={{ style: { color: 'black', width: '500px' } }}
+                placeholder="Busca"
+                value={this.state.query} 
+                onChange={this.onChangeQuery}
+              />
+            </SearchContainer>
+            <FakeButton>
+              <AddShoppingCartIcon onClick={this.props.goToPaginaCarrinho} />
+            </FakeButton>
+          </HeaderDiv>
         </header>
         <Filtros
           minPrice={this.state.minPrice}
@@ -119,7 +143,7 @@ export default class PaginaServicos extends React.Component {
         <Container>
           {servicos}
         </Container>
-      </>
+      </Main>
     )
   }
 }
